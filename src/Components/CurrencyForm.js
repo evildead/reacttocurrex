@@ -16,8 +16,11 @@ class CurrencyForm extends React.Component {
            Make sure you initialize state with all the properties you plan on there being to manage */
         this.state = {
             selectedBase: 'EUR',
-            startVal: 1
+            startVal: 1,
+            currencyLabels: {}
         };
+
+        this.setState({ currencyLabels: getCurrencyLabels() });
 
         /* JavaScript does not bind the instance value of 'this' to our methods. If we want to use a callback
            after the render method has run and need to use 'this' in it, we need to manually bind this to the method */
@@ -28,7 +31,7 @@ class CurrencyForm extends React.Component {
 
     // Method invoked by form components
     submitValues() {
-        // we pull the zipcode out of state
+        // we pull the startVal and selectedBase out of state
         const { startVal, selectedBase } = this.state;
 
         // we pull onGetCurrencies method out of props
@@ -39,59 +42,54 @@ class CurrencyForm extends React.Component {
         onGetCurrencies(selectedBase, startVal);
     }
 
-    // Method triggered by zipcode input changes (onInput)
+    // Method triggered by startVal input changes (onInput)
     inputUpdated(e) {
         // value contains the modified input value
         const { value } = e.target;
         
-        // update the state by assigning value to zipcode
+        // update the state by assigning value to startVal
         this.setState({ startVal: value });
 
         this.submitValues();
     }
+
+    baseCurrencySelected(e) {
+        // value contains the modified input value
+        const { value } = e.target;
+
+        // update the state by assigning value to selectedBase
+        this.setState({ selectedBase: value });
+        
+        this.submitValues();
+    }
     
     render() {
+        const{ currencyLabels, selectedBase } = this.state;
         return (
             <div className="currency-form">
                 <form>
-                    <label htmlFor="startVal">Zip Code</label>
+                    <label htmlFor="startVal">Start Value</label>
                     <input
                         type="input"
                         name="startVal"
-                        
-                        /* Set the value of the input to the value of the startVal, because we need
-                           to make sure that when this attribute is updated, then the value of the input also changes */
                         value={this.state.startVal}
-                        
-                        /* React's JSX callback onInput: Here we have a callback called inputUpdated that will be called
-                           whenever the input event fires on the input. From our knowledge of basic JavaScript,
-                           we know that this is called whenever someone types something into the input */
                         onInput={this.inputUpdated} />
 
-                    <label htmlFor="base">Zip Code</label>
-                    <select onChange={this.submitZipCode}>
-                    <option value="">Select a zip</option>
-                    {this.props.zips.map(zip =>
-                        <option key={zip} value={zip}>{zip}</option>
-                    )}
+                    <label htmlFor="base">Base Currency</label>
+                    <select onChange={this.baseCurrencySelected}>
+                    {Object.keys(currencyLabels).map(key => {
+                        if(key == selectedBase) {
+                            <option key={key} value={key} selected>{currencyLabels[key]}</option>
+                        }
+                        else {
+                            <option key={key} value={key}>{currencyLabels[key]}</option>
+                        }
+                    })}
                     </select>
                 </form>
             </div>
         );
     }
 }
-
-// enforce the props and their types that a component expects to receive
-ZipForm.propTypes = {
-    onSubmit: React.PropTypes.func
-    
-    // React 15.5
-    //onSubmit: PropTypes.func
-};
-
-// Here we are setting an empty function to be the onSubmit prop. This way when it is called, nothing happens but the code doesn't explode
-ZipForm.defaultProps = {
-    onSubmit: () => {}
-};
 
 export default CurrencyForm;

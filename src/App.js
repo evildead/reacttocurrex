@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import dollarSign from './dollarsign01.png';
-import { jsonp } from 'axios-jsonp-pro'
+import { jsonp } from 'axios-jsonp-pro';
 import './App.css';
-import CurrencyList from './Components/CurrencyList'
+import CurrencyForm from './Components/CurrencyForm';
+import CurrencyList from './Components/CurrencyList';
 
 // use exports.checkOnline in util.js file
 var checkOnline = require('./Shared/util.js').checkOnline;
@@ -131,6 +132,8 @@ class App extends Component {
                 <img src={dollarSign} className="App-logo" alt="logo" />
                 <h2>React to Currency Exchange</h2>
                 </div>
+
+                <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
 
                 {/**
                  * The CurrencyList

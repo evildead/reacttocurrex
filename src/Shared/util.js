@@ -25,7 +25,7 @@ var getDateOfToday = function() {
 }
 
 var getCurrencyLabels = function() {
-    currencyLabels = {};
+    var currencyLabels = {};
     currencyLabels['AUD'] = "Australia Dollar";
     currencyLabels['BGN'] = "Bulgaria Lev";
     currencyLabels['BRL'] = "Brazil Real";

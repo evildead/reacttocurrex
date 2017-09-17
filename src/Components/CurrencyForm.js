@@ -17,16 +17,14 @@ class CurrencyForm extends React.Component {
         this.state = {
             selectedBase: 'EUR',
             startVal: 1,
-            currencyLabels: {}
+            currencyLabels: getCurrencyLabels()
         };
-
-        this.setState({ currencyLabels: getCurrencyLabels() });
 
         /* JavaScript does not bind the instance value of 'this' to our methods. If we want to use a callback
            after the render method has run and need to use 'this' in it, we need to manually bind this to the method */
         this.inputUpdated = this.inputUpdated.bind(this);
-
         this.submitValues = this.submitValues.bind(this);
+        this.baseCurrencySelected = this.baseCurrencySelected.bind(this);
     }
 
     // Method invoked by form components
@@ -79,10 +77,10 @@ class CurrencyForm extends React.Component {
                     <select onChange={this.baseCurrencySelected}>
                     {Object.keys(currencyLabels).map(key => {
                         if(key == selectedBase) {
-                            <option key={key} value={key} selected>{currencyLabels[key]}</option>
+                            return <option key={key} value={key} selected>{currencyLabels[key]}</option>
                         }
                         else {
-                            <option key={key} value={key}>{currencyLabels[key]}</option>
+                            return <option key={key} value={key}>{currencyLabels[key]}</option>
                         }
                     })}
                     </select>

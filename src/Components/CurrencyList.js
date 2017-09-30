@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CurrencyListItem from './CurrencyListItem'
 
 class CurrencyList extends Component {
@@ -26,7 +27,7 @@ class CurrencyList extends Component {
         return (
             <div className="CurrencyList">
                 <h1>Currencies compared to {baseRates.base}</h1>
-                {Object.keys(baseRates.rates).map((key, index) =>
+                {Object.keys(baseRates.rates).sort().map((key, index) =>
                     <CurrencyListItem
                         key={key}
                         startVal={startVal}
@@ -40,8 +41,8 @@ class CurrencyList extends Component {
 }
 
 CurrencyList.propTypes = {
-    startVal: React.PropTypes.number.isRequired,
-    rates: React.PropTypes.object.isRequired
+    startVal: PropTypes.number.isRequired,
+    rates: PropTypes.object.isRequired
 };
 
 export default CurrencyList;

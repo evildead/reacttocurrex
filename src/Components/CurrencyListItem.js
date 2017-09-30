@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CurrencyListItem extends Component {
     /**
@@ -34,9 +35,9 @@ class CurrencyListItem extends Component {
 }
 
 CurrencyListItem.propTypes = {
-    startVal: React.PropTypes.number.isRequired,
-    rate: React.PropTypes.number.isRequired,
-    target: React.PropTypes.string.isRequired
+    startVal: PropTypes.number.isRequired,
+    rate: PropTypes.number.isRequired,
+    target: PropTypes.string.isRequired
 };
 
 export default CurrencyListItem;

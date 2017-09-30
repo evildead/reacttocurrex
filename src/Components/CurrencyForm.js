@@ -28,7 +28,10 @@ class CurrencyForm extends React.Component {
     }
 
     // Method invoked by form components
-    submitValues() {
+    submitValues(e) {
+        // We need to prevent the default action of the form so that we stay on the page. 
+        e.preventDefault();
+
         // we pull the startVal and selectedBase out of state
         const { startVal, selectedBase } = this.state;
 
@@ -47,8 +50,6 @@ class CurrencyForm extends React.Component {
         
         // update the state by assigning value to startVal
         this.setState({ startVal: value });
-
-        this.submitValues();
     }
 
     baseCurrencySelected(e) {
@@ -57,26 +58,24 @@ class CurrencyForm extends React.Component {
 
         // update the state by assigning value to selectedBase
         this.setState({ selectedBase: value });
-        
-        this.submitValues();
     }
     
     render() {
         const{ currencyLabels, selectedBase } = this.state;
         return (
             <div className="currency-form">
-                <form>
+                <form onSubmit={this.submitValues}>
                     <label htmlFor="startVal">Start Value</label>
                     <input
                         type="input"
                         name="startVal"
                         value={this.state.startVal}
-                        onInput={this.inputUpdated} />
+                        onChange={this.inputUpdated} />
 
                     <label htmlFor="base">Base Currency</label>
                     <select onChange={this.baseCurrencySelected}>
                     {Object.keys(currencyLabels).map(key => {
-                        if(key == selectedBase) {
+                        if(key === selectedBase) {
                             return <option key={key} value={key} selected>{currencyLabels[key]}</option>
                         }
                         else {
@@ -84,6 +83,7 @@ class CurrencyForm extends React.Component {
                         }
                     })}
                     </select>
+                    <button type="submit">Go for it!!</button>
                 </form>
             </div>
         );

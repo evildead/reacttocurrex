@@ -18,7 +18,8 @@ class CurrencyListItem extends Component {
      * Function invoked when this react component is mounted (one of React's lifecycle methods)
      */
     componentDidMount() {
-        console.log("Hi there! CurrencyListItem.js component just did mount");
+        // Uncomment for debug
+        //console.log("Hi there! CurrencyListItem.js component just did mount");
     }
 
     /**

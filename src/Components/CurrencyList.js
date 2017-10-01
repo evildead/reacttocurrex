@@ -18,7 +18,8 @@ class CurrencyList extends Component {
      * Function invoked when this react component is mounted (one of React's lifecycle methods)
      */
     componentDidMount() {
-        console.log("Hi there! CurrencyList.js component just did mount");
+        // Uncomment for debug
+        //console.log("Hi there! CurrencyList.js component just did mount");
     }
 
     /**
@@ -46,7 +47,7 @@ class CurrencyList extends Component {
 
 CurrencyList.propTypes = {
     startVal: PropTypes.number.isRequired,
-    rates: PropTypes.object.isRequired
+    baseRates: PropTypes.object.isRequired
 };
 
 export default CurrencyList;

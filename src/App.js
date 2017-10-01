@@ -41,7 +41,8 @@ class App extends Component {
      * Function invoked when this react component is mounted (one of React's lifecycle methods)
      */
     componentDidMount() {
-        console.log("Hi there! App.js component just did mount");
+        // Uncomment for debug
+        //console.log("Hi there! App.js component just did mount");
 
         this.getLatestRates("EUR");
     }

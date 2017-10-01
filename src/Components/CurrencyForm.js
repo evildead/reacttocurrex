@@ -29,6 +29,14 @@ class CurrencyForm extends React.Component {
         this.baseCurrencySelected = this.baseCurrencySelected.bind(this);
     }
 
+    /**
+     * Function invoked when this react component is mounted (one of React's lifecycle methods)
+     */
+    componentDidMount() {
+        // Uncomment for debug
+        //console.log("Hi there! CurrencyForm.js component just did mount");
+    }
+
     // Method invoked by form components
     submitValues(e) {
         // We need to prevent the default action of the form so that we stay on the page. 
@@ -78,14 +86,9 @@ class CurrencyForm extends React.Component {
                     
                     <FormGroup>
                         <ControlLabel htmlFor="base">Base Currency</ControlLabel>
-                        <FormControl componentClass="select" onChange={this.baseCurrencySelected}>
+                        <FormControl componentClass="select" value={selectedBase} onChange={this.baseCurrencySelected}>
                         {Object.keys(currencyLabels).map(key => {
-                            if(key === selectedBase) {
-                                return <option key={key} value={key} selected>{key} ({currencyLabels[key]})</option>
-                            }
-                            else {
-                                return <option key={key} value={key}>{key} ({currencyLabels[key]})</option>
-                            }
+                            return <option key={key} value={key}>{key} ({currencyLabels[key]})</option>
                         })}
                         </FormControl>
                     </FormGroup>

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import dollarSign from './dollarsign01.png';
 import { jsonp } from 'axios-jsonp-pro';
 import './App.css';
+import './bootstrap/css/bootstrap.min.css';
 import CurrencyForm from './Components/CurrencyForm';
 import CurrencyList from './Components/CurrencyList';
+import { PageHeader, DropdownButton, MenuItem, Form } from 'react-bootstrap';
 
 // use exports.checkOnline in util.js file
 var checkOnline = require('./Shared/util.js').checkOnline;
@@ -129,16 +131,19 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="App-header">
-                <img src={dollarSign} className="App-logo" alt="logo" />
-                <h2>React to Currency Exchange</h2>
+                    <img src={dollarSign} className="App-logo" alt="logo" />
+                    <h2>React to Currency Exchange</h2>
                 </div>
 
-                <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
-
-                {/**
-                 * The CurrencyList
-                 */}
-                {this.getCurrencyList()}
+                <div className="col-sm-3">
+                    <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
+                </div>
+                <div className="col-sm-9">
+                    {/**
+                      * The CurrencyList
+                      */}
+                    {this.getCurrencyList()}
+                </div>
             </div>
         );
     }

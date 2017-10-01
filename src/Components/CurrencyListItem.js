@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../bootstrap/css/bootstrap.min.css';
+
+// use exports.getCurrencyLabels in util.js file
+var getCurrencyLabels = require('../Shared/util.js').getCurrencyLabels;
 
 class CurrencyListItem extends Component {
     /**
@@ -23,11 +27,12 @@ class CurrencyListItem extends Component {
     render() {
         const{ startVal, rate, target } = this.props;
         var rateStr = 'Rate: ' + rate;
+        var completeCurrencyName = getCurrencyLabels()[target];
         var finalVal = startVal * rate;
 
         return (
-            <div className="CurrencyListItem">
-                <h2>{target}</h2>
+            <div className="Currency-List-Item col-sm-3">
+                <h4><span title={completeCurrencyName}>{target}</span></h4>
                 <span title={rateStr}>{finalVal.toFixed(5)}</span>
             </div>
         );

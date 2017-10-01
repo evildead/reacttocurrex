@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CurrencyListItem from './CurrencyListItem'
+import CurrencyListItem from './CurrencyListItem';
+
+// use exports.getCurrencyLabels in util.js file
+var getCurrencyLabels = require('../Shared/util.js').getCurrencyLabels;
 
 class CurrencyList extends Component {
     /**
@@ -23,10 +26,11 @@ class CurrencyList extends Component {
      */
     render() {
         const{ startVal, baseRates } = this.props;
+        var completeCurrencyName = getCurrencyLabels()[baseRates.base];
 
         return (
-            <div className="CurrencyList">
-                <h1>Currencies compared to {baseRates.base}</h1>
+            <div className="Currency-List">
+                <h4>Currencies compared to {baseRates.base} ({completeCurrencyName})</h4>
                 {Object.keys(baseRates.rates).sort().map((key, index) =>
                     <CurrencyListItem
                         key={key}

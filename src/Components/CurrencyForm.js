@@ -1,9 +1,11 @@
 import React from 'react'
+import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import '../bootstrap/css/bootstrap.min.css';
 
 // For React 15.5 on, add the prop-types external package prop-types (to be added with npm)
 //import PropTypes from 'prop-types'
 
-// use exports.checkOnline in util.js file
+// use exports.getCurrencyLabels in util.js file
 var getCurrencyLabels = require('../Shared/util.js').getCurrencyLabels;
 
 //The component representing the form to submit values and base currencies
@@ -63,27 +65,34 @@ class CurrencyForm extends React.Component {
     render() {
         const{ currencyLabels, selectedBase } = this.state;
         return (
-            <div className="currency-form">
+            <div className="Currency-form">
                 <form onSubmit={this.submitValues}>
-                    <label htmlFor="startVal">Start Value</label>
-                    <input
-                        type="input"
-                        name="startVal"
-                        value={this.state.startVal}
-                        onChange={this.inputUpdated} />
+                    <FormGroup>
+                        <ControlLabel htmlFor="startVal">Start Value</ControlLabel>
+                        <FormControl
+                            type="text"
+                            name="startVal"
+                            value={this.state.startVal}
+                            onChange={this.inputUpdated} />
+                    </FormGroup>
+                    
+                    <FormGroup>
+                        <ControlLabel htmlFor="base">Base Currency</ControlLabel>
+                        <FormControl componentClass="select" onChange={this.baseCurrencySelected}>
+                        {Object.keys(currencyLabels).map(key => {
+                            if(key === selectedBase) {
+                                return <option key={key} value={key} selected>{key} ({currencyLabels[key]})</option>
+                            }
+                            else {
+                                return <option key={key} value={key}>{key} ({currencyLabels[key]})</option>
+                            }
+                        })}
+                        </FormControl>
+                    </FormGroup>
 
-                    <label htmlFor="base">Base Currency</label>
-                    <select onChange={this.baseCurrencySelected}>
-                    {Object.keys(currencyLabels).map(key => {
-                        if(key === selectedBase) {
-                            return <option key={key} value={key} selected>{currencyLabels[key]}</option>
-                        }
-                        else {
-                            return <option key={key} value={key}>{currencyLabels[key]}</option>
-                        }
-                    })}
-                    </select>
-                    <button type="submit">Go for it!!</button>
+                    <FormGroup>
+                        <Button type="submit">Go for it!!</Button>
+                    </FormGroup>
                 </form>
             </div>
         );

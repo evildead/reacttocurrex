@@ -2,10 +2,12 @@
   "name": "reacttocurrex",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://evildead.github.io/reacttocurrex",
   "dependencies": {
     "axios": "^0.16.2",
     "axios-jsonp-pro": "^1.0.0",
     "bootstrap": "^3.3.7",
+    "gh-pages": "^1.0.0",
     "jest-cli": "^21.2.1",
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
@@ -14,6 +16,8 @@
     "react-scripts": "1.0.13"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

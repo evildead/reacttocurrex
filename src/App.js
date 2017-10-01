@@ -5,7 +5,6 @@ import './App.css';
 import './bootstrap/css/bootstrap.min.css';
 import CurrencyForm from './Components/CurrencyForm';
 import CurrencyList from './Components/CurrencyList';
-import { PageHeader, DropdownButton, MenuItem, Form } from 'react-bootstrap';
 
 // use exports.checkOnline in util.js file
 var checkOnline = require('./Shared/util.js').checkOnline;
@@ -132,7 +131,7 @@ class App extends Component {
             <div className="App">
                 <div className="App-header">
                     <img src={dollarSign} className="App-logo" alt="logo" />
-                    <h2>React to Currency Exchange</h2>
+                    <h3>React to Currency Exchange</h3>
                 </div>
 
                 <div className="col-sm-3">

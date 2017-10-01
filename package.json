@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "axios-jsonp-pro": "^1.0.0",
     "bootstrap": "^3.3.7",
+    "jest-cli": "^21.2.1",
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
     "react-bootstrap": "^0.31.3",

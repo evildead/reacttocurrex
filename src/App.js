@@ -34,7 +34,7 @@ class App extends Component {
 
     // readable property fixerioapiroot: returns the path to fixer.io APIs
     get fixerioapiroot() {
-        return "http://api.fixer.io";
+        return "https://api.fixer.io";
     }
 
     /**

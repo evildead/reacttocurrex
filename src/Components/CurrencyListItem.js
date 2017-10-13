@@ -34,7 +34,8 @@ class CurrencyListItem extends Component {
         return (
             <div className="Currency-List-Item col-sm-3">
                 <h4><span title={completeCurrencyName}>{target}</span></h4>
-                <span title={rateStr}>{finalVal.toFixed(5)}</span>
+                <h5>{completeCurrencyName}</h5>
+                <span title={rateStr}>{finalVal.toFixed(3)}</span>
             </div>
         );
     }

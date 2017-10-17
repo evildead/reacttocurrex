@@ -5,7 +5,6 @@ import './App.css';
 import './bootstrap/css/bootstrap.min.css';
 import CurrencyForm from './Components/CurrencyForm';
 import CurrencyList from './Components/CurrencyList';
-import { Affix, AutoAffix } from 'react-overlays';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 // use exports.checkOnline in util.js file

@@ -137,19 +137,12 @@ class App extends Component {
 
         return (
             <div className="App">
-                {/*
-                <div className="App-header">
-                    <img src={dollarSign} className="App-logo" alt="logo" />
-                    <h3>React to Currency Exchange</h3>
-                </div>
-                */}
-
-                <Navbar inverse fixedTop expanded>
+                <Navbar inverse fixedTop expanded fluid>
                     <Navbar.Header>
                         <Navbar.Brand className="customNavbar">
                             <img src={dollarSign} className="App-logo" alt="logo" />
-                            React to Currency Exchange
-                            <p className="navbar-brand-subtitle">Currencies compared to {startVal} {selectedBase} ({completeCurrencyName})</p>
+                            <p className="navbar-brand-title">React to Currency Exchange</p>
+                            <p className="navbar-brand-subtitle">Currencies compared to:<br />{startVal} {selectedBase} ({completeCurrencyName})</p>
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Navbar>
@@ -165,6 +158,12 @@ class App extends Component {
                         {this.getCurrencyList()}
                     </div>
                 </div>
+
+                <Navbar inverse fixedBottom expanded fluid>
+                    <Nav>
+                        <NavItem href="http://fixer.io" target="_blank">Foreign exchange rates API by Fixer.io</NavItem>
+                    </Nav>
+                </Navbar>
             </div>
         );
     }

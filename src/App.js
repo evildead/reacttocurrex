@@ -141,7 +141,7 @@ class App extends Component {
                         <Navbar.Brand className="customNavbar">
                             <img src={dollarSign} className="App-logo" alt="logo" />
                             <p className="navbar-brand-title">React to Currency Exchange</p>
-                            <p className="navbar-brand-subtitle">Currencies compared to:<br />{startVal} {selectedBase} ({completeCurrencyName})</p>
+                            <p className="navbar-brand-subtitle">Currencies compared to:<br />{startVal} {selectedBase} <span className="smallText">({completeCurrencyName})</span></p>
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Navbar>

@@ -35,7 +35,7 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: #e0eee0;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .App-body {
@@ -81,4 +81,8 @@
     padding-left: 2px;
     padding-right: 2px;
     min-width: 190px !important;
+}
+
+span.smallText {
+    font-size: 14px;
 }

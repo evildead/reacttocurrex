@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+// commented because we want to allow a cache clean for new deployments
+//import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+unregister();
+
+// commented because we want to allow a cache clean for new deployments
+//registerServiceWorker(); // commented because we want to allow a cache clean

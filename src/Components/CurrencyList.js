@@ -31,7 +31,6 @@ class CurrencyList extends Component {
 
         return (
             <div className="Currency-List">
-                <h4>Currencies compared to {baseRates.base} ({completeCurrencyName})</h4>
                 {Object.keys(baseRates.rates).sort().map((key, index) =>
                     <CurrencyListItem
                         key={key}

@@ -5,11 +5,15 @@ import './App.css';
 import './bootstrap/css/bootstrap.min.css';
 import CurrencyForm from './Components/CurrencyForm';
 import CurrencyList from './Components/CurrencyList';
+import { Affix, AutoAffix } from 'react-overlays';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 // use exports.checkOnline in util.js file
 var checkOnline = require('./Shared/util.js').checkOnline;
 // use exports.getDateOfToday in util.js file
 var getDateOfToday = require('./Shared/util.js').getDateOfToday;
+// use exports.getCurrencyLabels in util.js file
+var getCurrencyLabels = require('./Shared/util.js').getCurrencyLabels;
 
 class App extends Component {
     /**
@@ -114,7 +118,7 @@ class App extends Component {
      * @param {*base currency: 'EUR', 'USD', 'GPB', ...} base 
      */
     getLatestRatesObjectFromState(base) {
-        const{ latestBaseRates,  } = this.state;
+        const{ latestBaseRates  } = this.state;
 
         if(latestBaseRates.hasOwnProperty(base)) {
             return latestBaseRates[base];
@@ -128,21 +132,38 @@ class App extends Component {
      * Function invoked to render(draw) this component on the screen (one of React's lifecycle methods)
      */
     render() {
+        const{ startVal, selectedBase } = this.state;
+        var completeCurrencyName = getCurrencyLabels()[selectedBase];
+
         return (
             <div className="App">
+                {/*
                 <div className="App-header">
                     <img src={dollarSign} className="App-logo" alt="logo" />
                     <h3>React to Currency Exchange</h3>
                 </div>
+                */}
 
-                <div className="col-sm-3">
-                    <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
-                </div>
-                <div className="col-sm-9">
-                    {/**
-                      * The CurrencyList
-                      */}
-                    {this.getCurrencyList()}
+                <Navbar inverse fixedTop expanded>
+                    <Navbar.Header>
+                        <Navbar.Brand className="customNavbar">
+                            <img src={dollarSign} className="App-logo" alt="logo" />
+                            React to Currency Exchange
+                            <p className="navbar-brand-subtitle">Currencies compared to {startVal} {selectedBase} ({completeCurrencyName})</p>
+                        </Navbar.Brand>
+                    </Navbar.Header>
+                </Navbar>
+
+                <div className="row App-body">
+                    <div className="col-sm-3">
+                        <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
+                    </div>
+                    <div className="col-sm-9">
+                        {/**
+                        * The CurrencyList
+                        */}
+                        {this.getCurrencyList()}
+                    </div>
                 </div>
             </div>
         );

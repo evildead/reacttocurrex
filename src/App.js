@@ -158,7 +158,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                <Navbar inverse fixedBottom expanded fluid>
+                <Navbar inverse expanded fluid>
                     <Nav>
                         <NavItem href="http://fixer.io" target="_blank">Foreign exchange rates API by Fixer.io</NavItem>
                     </Nav>

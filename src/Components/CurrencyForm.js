@@ -59,7 +59,9 @@ class CurrencyForm extends React.Component {
         const { value } = e.target;
         
         // update the state by assigning value to startVal
-        this.setState({ startVal: value });
+        this.setState({
+            startVal: value.replace(/[^\d\.]+/g, '') // remove all non digit or '.' chars
+        });
     }
 
     baseCurrencySelected(e) {
@@ -79,6 +81,7 @@ class CurrencyForm extends React.Component {
                         <ControlLabel htmlFor="startVal">Start Value</ControlLabel>
                         <FormControl
                             type="text"
+                            id="startVal"
                             name="startVal"
                             value={this.state.startVal}
                             onChange={this.inputUpdated} />

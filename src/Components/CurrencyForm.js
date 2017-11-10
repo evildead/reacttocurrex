@@ -45,28 +45,35 @@ class CurrencyForm extends React.Component {
         // we pull the startVal and selectedBase out of state
         const { startVal, selectedBase } = this.state;
 
+        // we sanitize the startVal
+        let sanitizedVal = startVal.replace(/[^\d\.]+/g, '') // remove all non digit or '.' chars
+            .replace(/\.\.+/g, '.'); // Replace multiple . with single .
+        sanitizedVal = parseFloat(sanitizedVal);
+        if(isNaN(sanitizedVal)) {
+            sanitizedVal = 0;
+        }
+
+        // set the startVal to the sanitized value
+        this.setState({
+            startVal: sanitizedVal
+        });
+
         // we pull onGetCurrencies method out of props
         // in App.js we invoke this component in this way: <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
         const { onGetCurrencies } = this.props;
 
-        // we call onGetCurrencies and pass it the selectedBase and startVal. This is how the parent knows about the form submission.
-        onGetCurrencies(selectedBase, startVal);
+        // we call onGetCurrencies and pass it the selectedBase and sanitizedVal. This is how the parent knows about the form submission.
+        onGetCurrencies(selectedBase, sanitizedVal);
     }
 
     // Method triggered by startVal input changes (onInput)
     inputUpdated(e) {
         // value contains the modified input value
         const { value } = e.target;
-        let sanitizedVal = value.replace(/[^\d\.]+/g, '') // remove all non digit or '.' chars
-            .replace(/\.\.+/g, '.'); // Replace multiple . with single .
-        sanitizedVal = parseFloat(sanitizedVal);
-        if(isNaN(sanitizedVal)) {
-            sanitizedVal = 0;
-        }
         
-        // update the state by assigning sanitizedVal to startVal
+        // update the state by assigning value to startVal
         this.setState({
-            startVal: sanitizedVal
+            startVal: value
         });
     }
 

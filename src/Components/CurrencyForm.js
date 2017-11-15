@@ -46,7 +46,7 @@ class CurrencyForm extends React.Component {
         const { startVal, selectedBase } = this.state;
 
         // we sanitize the startVal
-        let sanitizedVal = startVal.replace(/[^\d\.]+/g, '') // remove all non digit or '.' chars
+        let sanitizedVal = startVal.toString().replace(/[^\d\.]+/g, '') // remove all non digit or '.' chars
             .replace(/\.\.+/g, '.'); // Replace multiple . with single .
         sanitizedVal = parseFloat(sanitizedVal);
         if(isNaN(sanitizedVal)) {

@@ -61,7 +61,7 @@ class App extends Component {
 
         jsonp(this.fixerioapiroot + '/latest?base=' + base)
         .then((response) => {
-            console.log(response);
+            //console.log(response);
             this.addOrReplaceLatestBaseRates(response);
         })
         .catch(function (error) {

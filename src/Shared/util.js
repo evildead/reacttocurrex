@@ -42,6 +42,7 @@ var getCurrencyLabels = function() {
     currencyLabels['IDR'] = "Indonesia Rupiah";
     currencyLabels['ILS'] = "Israel Shekel";
     currencyLabels['INR'] = "India Rupee";
+    currencyLabels['ISK'] = "Iceland Krona";
     currencyLabels['JPY'] = "Japan Yen";
     currencyLabels['KRW'] = "Korea (South) Won";
     currencyLabels['MXN'] = "Mexico Peso";

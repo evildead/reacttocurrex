@@ -39,7 +39,7 @@ class App extends Component {
 
     // readable property recurrencyapiroot: returns the path to recurrency.danilocarrabino.net APIs
     get recurrencyapiroot() {
-        return "http://recurrency.danilocarrabino.net";
+        return "https://recurrency.danilocarrabino.net";
     }
 
     /**

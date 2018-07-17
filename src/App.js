@@ -25,19 +25,21 @@ class App extends Component {
         this.state = {
             latestBaseRates: {},
             startVal: 1,
-            selectedBase: 'EUR'
+            selectedBase: 'EUR',
+            availableCurrencies: null
         };
 
         this.getLatestRates = this.getLatestRates.bind(this);
         this.getLatestRatesObjectFromState = this.getLatestRatesObjectFromState.bind(this);
         this.addOrReplaceLatestBaseRates = this.addOrReplaceLatestBaseRates.bind(this);
+        this.replaceAvailableCurrencies = this.replaceAvailableCurrencies.bind(this);
         this.onGetCurrencies = this.onGetCurrencies.bind(this);
         this.getCurrencyList = this.getCurrencyList.bind(this);
     }
 
-    // readable property fixerioapiroot: returns the path to fixer.io APIs
-    get fixerioapiroot() {
-        return "https://api.fixer.io";
+    // readable property recurrencyapiroot: returns the path to recurrency.danilocarrabino.net APIs
+    get recurrencyapiroot() {
+        return "http://recurrency.danilocarrabino.net";
     }
 
     /**
@@ -48,6 +50,7 @@ class App extends Component {
         //console.log("Hi there! App.js component just did mount");
 
         this.getLatestRates("EUR");
+        this.getAvailableCurrencies();
     }
 
     /**
@@ -59,10 +62,39 @@ class App extends Component {
             return;
         }
 
-        jsonp(this.fixerioapiroot + '/latest?base=' + base)
+        jsonp(this.recurrencyapiroot + '/latest?base=' + base)
         .then((response) => {
             //console.log(response);
-            this.addOrReplaceLatestBaseRates(response);
+            if(response['err'] != null) {
+                console.log(response['err']);
+            }
+            else {
+                this.addOrReplaceLatestBaseRates(response['data']);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    /**
+     * Asynchronous method to retrieve the available currencies
+     * @param {*base currency: 'EUR', 'USD', 'GPB', ...} base 
+     */
+    getAvailableCurrencies() {
+        if(!checkOnline()) {
+            return;
+        }
+
+        jsonp(this.recurrencyapiroot + '/currencies?')
+        .then((response) => {
+            //console.log(response);
+            if(response['err'] != null) {
+                console.log(response['err']);
+            }
+            else {
+                this.replaceAvailableCurrencies(response['data']);
+            }
         })
         .catch(function (error) {
             console.log(error);
@@ -83,6 +115,7 @@ class App extends Component {
         // in our state we don't have the up-to-date rates values
         if((currencyRates === null) || (currencyRates.date < getDateOfToday())) {
             this.getLatestRates(base);
+            this.getAvailableCurrencies();
         }
     }
 
@@ -112,6 +145,10 @@ class App extends Component {
         this.setState({ latestBaseRates:latestBaseRates });
     }
 
+    replaceAvailableCurrencies(response) {
+        this.setState({ availableCurrencies:response });
+    }
+
     /**
      * get the latest rates from state
      * @param {*base currency: 'EUR', 'USD', 'GPB', ...} base 
@@ -131,7 +168,7 @@ class App extends Component {
      * Function invoked to render(draw) this component on the screen (one of React's lifecycle methods)
      */
     render() {
-        const{ startVal, selectedBase } = this.state;
+        const{ startVal, selectedBase, availableCurrencies } = this.state;
         var completeCurrencyName = getCurrencyLabels()[selectedBase];
 
         return (
@@ -148,7 +185,7 @@ class App extends Component {
 
                 <div className="row App-body">
                     <div className="col-sm-3">
-                        <CurrencyForm onGetCurrencies={this.onGetCurrencies} />
+                        <CurrencyForm onGetCurrencies={this.onGetCurrencies} availableCurrencies={availableCurrencies} />
                     </div>
                     <div className="col-sm-9">
                         {/**
@@ -160,7 +197,7 @@ class App extends Component {
 
                 <Navbar inverse expanded fluid>
                     <Nav>
-                        <NavItem href="http://fixer.io" target="_blank">Foreign exchange rates API by Fixer.io</NavItem>
+                        <NavItem href="http://recurrency.danilocarrabino.net" target="_blank">Currency exchange rates API by Recurrency (Danilo Carrabino)</NavItem>
                     </Nav>
                 </Navbar>
             </div>

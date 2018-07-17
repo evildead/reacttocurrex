@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import '../bootstrap/css/bootstrap.min.css';
 
@@ -87,6 +87,7 @@ class CurrencyForm extends React.Component {
     
     render() {
         const{ currencyLabels, selectedBase } = this.state;
+        const{ availableCurrencies } = this.props;
         return (
             <div className="Currency-form">
                 <form onSubmit={this.submitValues}>
@@ -104,7 +105,9 @@ class CurrencyForm extends React.Component {
                         <ControlLabel htmlFor="base">Base Currency</ControlLabel>
                         <FormControl componentClass="select" value={selectedBase} onChange={this.baseCurrencySelected}>
                         {Object.keys(currencyLabels).map(key => {
-                            return <option key={key} value={key}>{key} ({currencyLabels[key]})</option>
+                            if((availableCurrencies != null) && (availableCurrencies.indexOf(key) > -1)) {
+                                return <option key={key} value={key}>{key} ({currencyLabels[key]})</option>
+                            }
                         })}
                         </FormControl>
                     </FormGroup>

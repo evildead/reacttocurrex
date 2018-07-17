@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CurrencyListItem from './CurrencyListItem';
 
 // use exports.getCurrencyLabels in util.js file
-var getCurrencyLabels = require('../Shared/util.js').getCurrencyLabels;
+import { getCurrencyLabels } from "../Shared/util.js";
 
 class CurrencyList extends Component {
     /**

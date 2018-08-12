@@ -195,9 +195,11 @@ class App extends Component {
                     </div>
                 </div>
 
-                <Navbar inverse expanded fluid>
+                <Navbar id='appfooter' inverse expanded fluid>
                     <Nav>
-                        <NavItem href="http://recurrency.danilocarrabino.net" target="_blank">Currency exchange rates API by Recurrency (Danilo Carrabino)</NavItem>
+                        <NavItem
+                            href="http://recurrency.danilocarrabino.net"
+                            target="_blank">Currency exchange rates API by Recurrency (Danilo Carrabino)</NavItem>
                     </Nav>
                 </Navbar>
             </div>

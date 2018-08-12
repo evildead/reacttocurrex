@@ -86,3 +86,8 @@
 span.smallText {
     font-size: 14px;
 }
+
+nav#appfooter {
+    border-radius: 0px;
+    margin-bottom: 0px;
+}

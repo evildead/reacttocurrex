@@ -35,7 +35,7 @@ class CurrencyList extends Component {
                     <CurrencyListItem
                         key={key}
                         startVal={startVal}
-                        rate={baseRates.rates[key]}
+                        rate={parseFloat(baseRates.rates[key])}
                         target={key}
                     />
                 )}
